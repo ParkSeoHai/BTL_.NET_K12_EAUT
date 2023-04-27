@@ -40,7 +40,7 @@ namespace GUI
         {
             if(tenTK != "Admin") {
                 Form_Giao_Dich formGiaoDich = new Form_Giao_Dich(MaKH);
-                formGiaoDich.Show();
+                formGiaoDich.ShowDialog();
             }else
             {
                 MessageBox.Show("Đây là chức năng dành cho khách hàng. Vui lòng thao tác lại.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -52,7 +52,7 @@ namespace GUI
             if (tenTK != "Admin")
             {
                 FromTietKiem tietKiem = new FromTietKiem(MaKH, MaTK);
-                tietKiem.Show();
+                tietKiem.ShowDialog();
             }
             else
             {
@@ -68,7 +68,7 @@ namespace GUI
                 if (bUS_DangNhap.getSTK(MaKH) != "err")
                 {
                     FormLich_Su_Giao_Dich formLich_Su_Giao_Dich = new FormLich_Su_Giao_Dich(MaKH, bUS_DangNhap.getSTK(MaKH));
-                    formLich_Su_Giao_Dich.Show();
+                    formLich_Su_Giao_Dich.ShowDialog();
                 }
             }
             else
@@ -106,7 +106,10 @@ namespace GUI
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
-                Close();
+                foreach (Form form in Application.OpenForms)
+                {
+                    form.Close();
+                }
             }
         }
 
@@ -114,6 +117,11 @@ namespace GUI
         {
             FormThongTinKhachHang frmTTKH = new FormThongTinKhachHang(MaKH);
             frmTTKH.ShowDialog();
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

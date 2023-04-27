@@ -410,17 +410,20 @@ BEGIN
     WHERE K.MaKH = T.MaKH AND G.SoTKNhan = T.SoTK AND K.MaKH = @MaKH
 END
 
-
-
-
-
-
-
-
-
-
-
-
+--Get maKH
+CREATE PROCEDURE dbo.GetMaTK
+@TenTK nvarchar(50), @MK varchar(50)
+as
+begin
+	select MaTK from TAIKHOANDANGNHAP where TenTK = @TenTK and MK = @MK
+end
+--Get MaKH
+CREATE PROCEDURE dbo.Get_MaKH
+@TenTK nvarchar(50), @MK varchar(50)
+as
+begin
+	select MaKH from TAIKHOANDANGNHAP where TenTK = @TenTK and MK = @MK
+end
 
 
 SELECT * FROM THONGTINTAIKHOAN
@@ -469,3 +472,9 @@ as
 	BEGIN
 		UPDATE KHACHHANG SET TenKH = @TenKH, CMND = @CMND, NgaySinh = @NgaySinh, GioiTinh = @GioiTinh, DiaChi = @DiaChi, SDT = @SDT WHERE MaKH = @MaKH
 	END
+CREATE PROC dbo.GetSoTK 
+@MaKH varchar(20)
+as
+begin
+	select SoTK from THONGTINTAIKHOAN where MaKH = @MaKH
+end 
